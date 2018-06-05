@@ -28,6 +28,7 @@ public class OtherTopLevelDomains {
             else
                 continue;
         }
+
         return otherTLDs;
     }
 
