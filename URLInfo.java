@@ -17,9 +17,10 @@ public class URLInfo {
     public ArrayList supportedProtocols = null;
     public String phistank = "";
     public String expiryDate = "";
+    public ArrayList<String> otherDomains = null;
     public String[] supportedCipherSuites = {};
 
-    public URLInfo(String name, String status, String secure, String validity, String phistank, String expiryDate, Long expiry, ArrayList supportedProtocols, String[] supportedCipherSuites) {
+    public URLInfo(String name, String status, String secure, String validity, String phistank, String expiryDate, Long expiry,  ArrayList otherDomains, ArrayList supportedProtocols, String[] supportedCipherSuites) {
         this.name = name;
         this.status = status;
         this.secure = secure;
@@ -28,6 +29,7 @@ public class URLInfo {
         this.supportedProtocols = supportedProtocols;
         this.phistank = phistank;
         this.expiryDate = expiryDate;
+        this.otherDomains = otherDomains;
         this.supportedCipherSuites = supportedCipherSuites;
     }
 }
