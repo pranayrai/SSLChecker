@@ -144,6 +144,21 @@ public class ApplicationRunner {
         {
             URLInfo urlInfo = URLObjects.get(f);
             sb.append(urlInfo.name+"," + urlInfo.status + "," + urlInfo.secure + "," + urlInfo.validity + "," + urlInfo.phistank +"," + urlInfo.expiryDate + "," + urlInfo.expiry + ",");
+
+
+            
+            if(urlInfo.otherDomains.size() != 0)
+            {
+                for(int g=0; g<urlInfo.otherDomains.size(); g++)
+                {
+                    sb.append(urlInfo.otherDomains.get(g) + " ");
+                }
+            }
+            else
+                sb.append("None");
+
+            sb.append(",");
+
             if(urlInfo.supportedProtocols != null)
             {
                 for(int g=0; g<urlInfo.supportedProtocols.size(); g++)
@@ -153,17 +168,7 @@ public class ApplicationRunner {
             }
             else
                 sb.append("NA");
-            sb.append(",");
 
-            if(urlInfo.otherDomains != null)
-            {
-                for(int g=0; g<urlInfo.otherDomains.size(); g++)
-                {
-                    sb.append(urlInfo.otherDomains.get(g) + " ");
-                }
-            }
-            else
-                sb.append("None");
 
             sb.append(",");
 
@@ -195,16 +200,10 @@ public class ApplicationRunner {
                 if (urlInfo.expiry < 90)
                 {
                     sb1.append(urlInfo.name + "," + urlInfo.status + "," + urlInfo.secure + "," + urlInfo.validity + "," + urlInfo.phistank + "," + urlInfo.expiryDate + "," + urlInfo.expiry + ",");
-                    if (urlInfo.supportedProtocols != null) {
-                        for (int g = 0; g < urlInfo.supportedProtocols.size(); g++) {
-                            sb1.append(urlInfo.supportedProtocols.get(g) + " ");
-                        }
-                    } else
-                        sb1.append("NA");
 
-                    sb1.append(",");
 
-                    if(urlInfo.otherDomains != null)
+
+                    if(urlInfo.otherDomains.size() != 0)
                     {
                         for(int g=0; g<urlInfo.otherDomains.size(); g++)
                         {
@@ -213,6 +212,16 @@ public class ApplicationRunner {
                     }
                     else
                         sb1.append("None");
+
+                    sb.append(",");
+
+                    if (urlInfo.supportedProtocols != null) {
+                        for (int g = 0; g < urlInfo.supportedProtocols.size(); g++) {
+                            sb1.append(urlInfo.supportedProtocols.get(g) + " ");
+                        }
+                    } else
+                        sb1.append("NA");
+
 
                     sb1.append(",");
                     if (urlInfo.supportedCipherSuites != null) {
