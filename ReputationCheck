@@ -8,7 +8,7 @@ public class ReputationCheck {
 
     public String CheckReputation(String url, ArrayList<String> maliciousWebsites) throws MalformedURLException {
         String result = "Yes";
-        System.out.println(url);
+        //System.out.println(url);
 
         URL urlToCheck = new URL(url);
         String host = urlToCheck.getHost();
@@ -28,7 +28,7 @@ public class ReputationCheck {
                 continue;
         }
 
-        System.out.println("Trustworthy? -- " + result);
+        //System.out.println("Trustworthy? -- " + result);
         return result;
     }
 }
