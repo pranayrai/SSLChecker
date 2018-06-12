@@ -14,7 +14,7 @@ public class ApplicationRunner {
 
         Properties properties = new Properties();
         InputStream inputStream = null;
-        inputStream = new FileInputStream("config.properties");
+        inputStream = new FileInputStream("../config.properties");
         properties.load(inputStream);
 
         String fileName = properties.getProperty("filepath");
@@ -52,7 +52,7 @@ public class ApplicationRunner {
 
 
         /////// Debugging////////////
-
+/*
         System.out.println("\nHTTPS SITES LIST ");
 
         for(int k=0;k<httpsUrls.size(); k++)
@@ -66,7 +66,7 @@ public class ApplicationRunner {
             System.out.println(httpUrls.get(l));
         }
 
-        System.out.println("\nINVALID SITES LIST ");
+        //System.out.println("\nINVALID SITES LIST ");
         for(int m=0;m<invalidUrls.size(); m++)
         {
             System.out.println(invalidUrls.get(m));
@@ -75,6 +75,7 @@ public class ApplicationRunner {
 
 
         ////////////////////////////////
+        */
 
         ArrayList<URLInfo> URLObjects = new ArrayList<URLInfo>();           // Global Objects
 
@@ -82,7 +83,7 @@ public class ApplicationRunner {
 
         for(int y=0; y<httpsUrls.size(); y++)                               // perform the process for https sites
         {
-            System.out.println("Reading.....     "  + httpsUrls.get(y).substring(httpsUrls.get(y).indexOf(":")+3));
+            //System.out.println("Reading.....     "  + httpsUrls.get(y).substring(httpsUrls.get(y).indexOf(":")+3));
             URL url = new URL(httpsUrls.get(y));
             HttpsURLConnection connection;
             connection = (HttpsURLConnection) url.openConnection();
@@ -100,8 +101,10 @@ public class ApplicationRunner {
             else
                 validity = "Invalid";
 
+            /*
+
             PhistankCheck phistankCheck = new PhistankCheck();
-            String phistank = phistankCheck.PhisCheck(url.toString());
+            String phistank = phistankCheck.PhisCheck(url.toString());*/
 
             ReputationCheck reputationCheck = new ReputationCheck();
             String reputation = reputationCheck.CheckReputation(url.toString(), maliciousWebsites);
@@ -120,12 +123,12 @@ public class ApplicationRunner {
 
             URLInfo urlInfo = new URLInfo(httpsUrls.get(y).substring(httpsUrls.get(y).indexOf(":")+3), "Live", "Yes", validity, reputation, expiryD, expires, TLDs, protocols, CS);
             URLObjects.add(urlInfo);
-            System.out.println("Read.........         " + httpsUrls.get(y).substring(httpsUrls.get(y).indexOf(":")+3));
+            //System.out.println("Read.........         " + httpsUrls.get(y).substring(httpsUrls.get(y).indexOf(":")+3));
         }
 
         for(int z=0; z<httpUrls.size();z++)                                 // perform the process for http sites
         {
-            System.out.println("Reading....." + httpUrls.get(z).substring(httpUrls.get(z).indexOf(":")+3));
+            //System.out.println("Reading....." + httpUrls.get(z).substring(httpUrls.get(z).indexOf(":")+3));
             URL url = new URL(httpUrls.get(z));
             HttpURLConnection connection;
 
@@ -143,7 +146,7 @@ public class ApplicationRunner {
 
             URLInfo urlInfo = new URLInfo(httpUrls.get(z).substring(httpUrls.get(z).indexOf(":")+3),"Live", "No", "NA", reputation, "NA", null, null, TLDs,null  );
             URLObjects.add(urlInfo);
-            System.out.println("Read....." + httpUrls.get(z).substring(httpUrls.get(z).indexOf(":")+3));
+            //System.out.println("Read....." + httpUrls.get(z).substring(httpUrls.get(z).indexOf(":")+3));
         }
 
         for(int x=0; x<invalidUrls.size();x++)                                  // perform the process for invalid sites
@@ -209,16 +212,17 @@ public class ApplicationRunner {
         pw.write(sb.toString());
         pw.close();
 
-        PrintWriter pw1 = new PrintWriter(new File(dateFormat.format(date) + "-VRM_output.csv"));
+        /*PrintWriter pw1 = new PrintWriter(new File(dateFormat.format(date) + "-VRM_output.csv"));
         StringBuilder sb1 = new StringBuilder();
         sb1.append("name, Site status, HTTPS?, cert date valid?, Reputation?, expiry date, cert expires in(days), other registered TLDs, supported protocols, enabled cipher suites\n");
+
 
 
         for(int i=0; i<URLObjects.size(); i++)                              // create output containing urls with immediate attention
         {
             URLInfo urlInfo = URLObjects.get(i);
             if(urlInfo.expiry!=null) {
-                if (urlInfo.expiry < 90)
+                if (urlInfo.expiry < 30)
                 {
                     sb1.append(urlInfo.name + "," + urlInfo.status + "," + urlInfo.secure + "," + urlInfo.validity + "," + urlInfo.phistank + "," + urlInfo.expiryDate + "," + urlInfo.expiry + ",");
 
@@ -257,6 +261,7 @@ public class ApplicationRunner {
         }
         pw1.write(sb1.toString());
         pw1.close();
+        */
     }
 
 }
