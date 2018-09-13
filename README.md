@@ -1,5 +1,4 @@
 # SSLChecker v1.0
-This is a Government of BC property. If you want to use this code, please contact CIOISVRM@Victoria1.gov.bc.ca
 
 Place a config.properties file one directory above.
 
